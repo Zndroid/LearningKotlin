@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
+import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.find
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,14 +23,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val forecastList = findViewById<RecyclerView>(R.id.forecast_list)
+        val forecastList = find<RecyclerView>(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.adapter = ForecastListAdapter(items)
+        async() {
+            val s = Request("https://www.baidu.com").run()
+            //uiThread { longToast(s) }
+        }
     }
 
-    fun niceToast(message: String,
-                  tag: String = javaClass.simpleName,
-                  length: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(this, "[$tag] $message", length).show()
+}
+
+public class Request(val url: String) {
+    public fun run(): String {
+        return  URL(url).readText()
     }
 }
