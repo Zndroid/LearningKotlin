@@ -5,4 +5,7 @@ package com.hakz.learningkotlin.domain
  */
 
 data class ForecastList(val city: String, val country: String,
-                        val dailyForecast: List<Forecast>)
+                        val dailyForecast: List<Forecast>) {
+    operator fun get(p: Int) = dailyForecast[p]
+    fun size() = dailyForecast.size
+}
