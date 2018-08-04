@@ -1,4 +1,4 @@
-package com.hakz.learningkotlin
+package com.hakz.learningkotlin.extensions
 
 import android.content.Context
 import android.view.View

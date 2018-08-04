@@ -1,4 +1,4 @@
-package com.hakz.learningkotlin
+package com.hakz.learningkotlin.domain.datasource
 
 /**
  * Created by Administrator on 2018/8/3.

@@ -1,13 +1,17 @@
-package com.hakz.learningkotlin
+package com.hakz.learningkotlin.ui
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hakz.learningkotlin.domain.Forecast
-import com.hakz.learningkotlin.domain.ForecastList
+import com.hakz.learningkotlin.R
+import com.hakz.learningkotlin.domain.model.Forecast
+import com.hakz.learningkotlin.domain.model.ForecastList
+import com.hakz.learningkotlin.extensions.ctx
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
+import java.text.DateFormat
+import java.util.*
 
 /**
  * Created by Administrator on 2018/8/2.
@@ -32,10 +36,10 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
                 Picasso.get().load(iconUrl).placeholder(R.mipmap.ic_launcher).into(itemView.icon)
-                itemView.date.text = date
+                itemView.date.text = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(date*1000)
                 itemView.description.text = description
-                itemView.maxTemperature.text = "${high.toString()}"
-                itemView.minTemperature.text = "${low.toString()}"
+                itemView.maxTemperature.text = "${high}°"
+                itemView.minTemperature.text = "${low}°"
                 itemView.setOnClickListener { itemClick(forecast) }
             }
         }
