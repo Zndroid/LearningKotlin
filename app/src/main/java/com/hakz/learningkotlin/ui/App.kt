@@ -4,6 +4,7 @@ import android.app.Application
 import com.hakz.learningkotlin.extensions.DelegatesExt
 
 class App : Application() {
+
     companion object {
         var instance: App by DelegatesExt.notNullSingleValue()
     }
@@ -13,8 +14,3 @@ class App : Application() {
         instance = this
     }
 }
-
-
-
-
-
